@@ -1,0 +1,47 @@
+ <!--<p>
+    {{ result.items | json }}
+    {{ result.totalItems | json }}
+    {{ query | json }}
+</p>--> 
+
+<h2>Users</h2>
+<p>
+    <a [routerLink]="['/users/new']" class="btn btn-primary">New User</a>
+</p>
+
+<div class="well">
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" class="form-control" [(ngModel)]="query.fullName" type="text"
+               (keyup.enter)="onFilterChange()">
+    </div>
+    <button class="btn btn-default" (click)="onResetFilter()">Reset</button>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let col of columns">
+                <div *ngIf=!col.isSortable>{{ col.title}}</div>
+                <div *ngIf=col.isSortable (click)="onSortBy(col.key)">
+                    {{ col.title}}
+                    <i *ngIf="(query.sortBy === col.key)" class="fa" [class.fa-sort-down]="!query.isSortAscending" [class.fa-sort-up]="query.isSortAscending"></i>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of result.items | paginate: {
+                                                   itemsPerPage: query.pageSize,
+                                                   currentPage: query.page,
+                                                   totalItems: result.totalItems }"> 
+            <td>{{ user.id }}</td>
+            <td>{{ user.fullName }}</td>
+            <td>{{ (user.registrationDate != '0001-01-01T00:00:00') ? (user.registrationDate | date) : '' }}</td>
+            <td><a [routerLink]="['/users/',user.id]" class="btn btn-primary btn-sm">View</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<pagination-controls (pageChange)="query.page = $event" (click)="onPageChange()"></pagination-controls>

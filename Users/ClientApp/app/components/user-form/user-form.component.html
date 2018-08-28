@@ -1,0 +1,65 @@
+<h2>User</h2>
+<!--<p>
+    {{ interests | json }}
+</p>-->
+<form (ngSubmit)="submit()" #f="ngForm">
+    <!--<p>
+        {{ user | json }}
+    </p>-->
+
+    <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input id="fullName" type="text" class="form-control" name="fullName" [(ngModel)]="user.fullName" #fullName="ngModel" required />
+        <div class="alert alert-danger" *ngIf="fullName.touched && fullName.invalid">
+            <div *ngIf="fullName.errors.required">Full Name is Required</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" value="" id="email" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required />
+        <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+            <div *ngIf="email.errors.required">Email is Required</div>
+        </div>
+    </div>
+
+    <p><b>Gender:</b></p>
+    <label for="male" class="radio-inline"><input type="radio" name="gender" value="M" id="male" [(ngModel)]="user.gender" #gender="ngModel" required />Male</label>
+    <label for="female" class="radio-inline"><input type="radio" name="gender" value="F" id="female" [(ngModel)]="user.gender" />Female</label>
+    <div class="alert alert-danger" *ngIf="gender.touched && gender.invalid">
+        <div *ngIf="gender.errors.required">Gender is Required</div>
+    </div>
+    <p>&nbsp;</p>
+
+    <h2>Interests</h2>
+    <div *ngFor="let interest of interests" class="checkbox">
+        <label for="interest{{ interest.id }}">
+        <input type="checkbox" name="interest{{ interest.id }}" id="ineterst{{ interest.id }}"
+               (change)="onInterestToggle(interest.id, $event)"
+               [checked]="user.interests.includes(interest.id)" />
+        {{ interest.name }}
+        </label>
+    </div>
+
+    <p>&nbsp;</p>
+    <h2>Contact Details</h2>
+    <div class="form-group">
+        <label for="contactPhone">Phone</label>
+        <input id="contactPhone" type="text" value="" class="form-control" name="contactPhone" [(ngModel)]="user.contact.phone" #contactPhone="ngModel" required />
+        <div class="alert alert-danger" *ngIf="contactPhone.touched && contactPhone.invalid">
+            <div *ngIf="contactPhone.errors.required">Contact Phone is Required</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="contactAddress">Address</label>
+        <input id="contactAddress" type="text" value="" class="form-control" name="contactAddress" [(ngModel)]="user.contact.address" #contactAddress="ngModel" required />
+        <div class="alert alert-danger" *ngIf="contactAddress.touched && contactAddress.invalid">
+            <div *ngIf="contactAddress.errors.required">Contact Address is Required</div>
+        </div>
+    </div>
+
+    <p>&nbsp;</p>
+
+    <button type="submit" class="btn btn-primary" [disabled]="f.invalid">Save</button>
+</form>
+

@@ -1,0 +1,37 @@
+<!--<p>
+    {{ user | json }}
+</p>-->
+
+<div *ngIf="user">
+    <h2>Basic Information</h2>
+    <ul>
+        <li>FullName: {{ user.fullName }}</li>
+        <li>Email: {{ user.email }}</li>
+        <li>
+            Gender:
+            {{ (user.gender === 'M') ? "Male" : "Female" }}
+        </li>
+        <li>Registration Date: {{ user.registrationDate | date }}</li>
+    </ul>
+
+    <div *ngIf="user.interests.length > 0">
+        <h2>Interests</h2>
+        <ul>
+            <li *ngFor="let interest of user.interests">
+                {{ interest.name }}
+            </li>
+
+        </ul>
+    </div>
+
+
+    <h2>Contact Information</h2>
+    <ul>
+        <li>Phone: {{ user.contact.phone }}</li>
+        <li>Address: {{ user.contact.address }}</li>
+    </ul>
+
+    <p>&nbsp;</p>
+    <a [routerLink]="['/users/new', userId]" class="btn btn-primary">Edit</a>
+    <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+</div>

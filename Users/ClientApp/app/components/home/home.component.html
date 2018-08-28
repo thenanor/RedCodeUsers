@@ -1,0 +1,65 @@
+<h1>
+    Welcome to the Users App
+</h1>
+<p>
+
+    In this app you will be able to do CRUD operations around users. <br />
+    You will be able to create <a [routerLink]="['/users/new']"> a new user </a> <br />
+    View <a [routerLink]="['/users']">the list of existing users</a> <br />
+    Update and delete each one of them by clicking on the View button from the list
+</p>
+
+<p>&nbsp;</p>
+
+<h2>Technical Details</h2>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item active">
+        <a class="nav-link active" id="pills-backend-tab" data-toggle="pill" href="#pills-backend" role="tab" aria-controls="pills-backend" aria-selected="true">Back-end Details</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-frontend-tab" data-toggle="pill" href="#pills-frontend" role="tab" aria-controls="pills-frontend" aria-selected="false">Front-end Details</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="pills-extend-tab" data-toggle="pill" href="#pills-extend" role="tab" aria-controls="pills-extend" aria-selected="false">Not Implemented</a>
+    </li>
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade active in" id="pills-backend" role="tabpanel" aria-labelledby="pills-backend-tab">
+        <ul>
+            <li>The Back-end is built with: ASP.NET Core 2.0</li>
+            <li>Entity Framework Code first Migration is used as the ORM</li>
+            <li>Used: API Resources (DTOs) and Auto Mapper</li>
+            <li>
+                Applied:
+                <ul>
+                    <li>Repository Pattern and Unit Of Work</li>
+                    <li>Server-Side Table Filtering / Sorting / Paging</li>                                                            
+                </ul>
+
+                    
+            </li>
+        </ul>
+    </div>
+    <div class="tab-pane fade" id="pills-frontend" role="tabpanel" aria-labelledby="pills-frontend-tab">
+        <ul>
+            <li>The Front-end is built with: Angular 4.2.5</li>
+            <li>
+                Additional Installed Packages:
+                <ul>
+                    <li>Toast Notification</li>
+                    <li>Bootstrap and Font Awesome</li>
+                    <li>Pagination</li>
+                    <li>Underscore</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-pane fade" id="pills-extend" role="tabpanel" aria-labelledby="pills-extend-tab">
+        <ul>
+            <li>Authentication and Authorization</li>
+            <li>Custom Validations for user registration form</li>
+        </ul>
+    </div>
+</div>
+
